@@ -1,0 +1,48 @@
+
+        ===================================================
+        SHAP ANALYSIS REPORT
+        ===================================================
+        
+        ANALYSIS SUMMARY
+        ----------------
+        • Model: Hybrid CNN Features → XGBoost Classifier
+        • Classes: Bad (0), Good (1)
+        • Feature Dimension: 1920
+        • Samples Analyzed: 200
+        • Analysis Time: 25.2 seconds
+        
+        MODEL PERFORMANCE
+        -----------------
+        • Accuracy:  0.9916
+        • F1-Score:  0.9916
+        
+        KEY FINDINGS
+        ------------
+        • Feature Importance Correlation (XGBoost vs SHAP): 0.878
+        • Features explaining 80% importance: 39
+        • Features explaining 90% importance: 72
+        
+        GENERATED FILES
+        ---------------
+        Visualizations:
+        • shap_beeswarm.png - Beeswarm plot of feature importance
+        • shap_mean_abs_bar.png - Bar plot of mean |SHAP|
+        • shap_heatmap.png - Heatmap of feature contributions
+        • shap_decision_plot.png - Decision plot for samples
+        • feature_importance_comparison.png - XGBoost vs SHAP
+        
+        Detailed Plots:
+        • force_plots/ - Individual force plots (PNG + HTML)
+        • dependence_plots/ - Feature dependence plots
+        • waterfall_plots/ - Waterfall plots
+        
+        Data Files:
+        • shap_metrics.json - Comprehensive metrics
+        • shap_values.npy - Raw SHAP values
+        • X_sample.npy - Feature data used
+        • y_*.npy - True and predicted labels
+        
+        ===================================================
+        ANALYSIS COMPLETED SUCCESSFULLY!
+        ===================================================
+        

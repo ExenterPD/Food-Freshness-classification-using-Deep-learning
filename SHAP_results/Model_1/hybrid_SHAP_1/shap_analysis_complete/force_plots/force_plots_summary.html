@@ -1,0 +1,79 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>SHAP Force Plots - Hybrid Model Analysis</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 40px; }
+                h1 { color: #333; }
+                .container { display: flex; flex-wrap: wrap; gap: 20px; }
+                .sample { border: 1px solid #ddd; padding: 15px; border-radius: 8px; }
+                .sample img { max-width: 100%; height: auto; }
+                .correct { border-left: 5px solid #4CAF50; }
+                .wrong { border-left: 5px solid #f44336; }
+            </style>
+        </head>
+        <body>
+            <h1>SHAP Force Plots Analysis</h1>
+            <p>This page shows SHAP force plots for individual samples. Each plot shows how features contribute to the prediction.</p>
+            <div class="container">
+        
+            <div class="sample correct">
+                <h3>Sample 0</h3>
+                <p><strong>True:</strong> Good (1)</p>
+                <p><strong>Predicted:</strong> Good (1)</p>
+                <p><strong>Status:</strong> Correct</p>
+                <img src="force_plot_sample_0000.png" alt="Force plot for sample 0">
+            </div>
+            
+            <div class="sample correct">
+                <h3>Sample 1</h3>
+                <p><strong>True:</strong> Bad (0)</p>
+                <p><strong>Predicted:</strong> Bad (0)</p>
+                <p><strong>Status:</strong> Correct</p>
+                <img src="force_plot_sample_0001.png" alt="Force plot for sample 1">
+            </div>
+            
+            <div class="sample wrong">
+                <h3>Sample 17</h3>
+                <p><strong>True:</strong> Bad (0)</p>
+                <p><strong>Predicted:</strong> Good (1)</p>
+                <p><strong>Status:</strong> Misclassified</p>
+                <img src="force_plot_sample_0017.png" alt="Force plot for sample 17">
+            </div>
+            
+            <div class="sample correct">
+                <h3>Sample 153</h3>
+                <p><strong>True:</strong> Good (1)</p>
+                <p><strong>Predicted:</strong> Good (1)</p>
+                <p><strong>Status:</strong> Correct</p>
+                <img src="force_plot_sample_0153.png" alt="Force plot for sample 153">
+            </div>
+            
+            <div class="sample correct">
+                <h3>Sample 186</h3>
+                <p><strong>True:</strong> Bad (0)</p>
+                <p><strong>Predicted:</strong> Bad (0)</p>
+                <p><strong>Status:</strong> Correct</p>
+                <img src="force_plot_sample_0186.png" alt="Force plot for sample 186">
+            </div>
+            
+            <div class="sample correct">
+                <h3>Sample 93</h3>
+                <p><strong>True:</strong> Good (1)</p>
+                <p><strong>Predicted:</strong> Good (1)</p>
+                <p><strong>Status:</strong> Correct</p>
+                <img src="force_plot_sample_0093.png" alt="Force plot for sample 93">
+            </div>
+            
+            </div>
+            <p><strong>How to interpret:</strong></p>
+            <ul>
+                <li>Red features push the prediction toward "Good"</li>
+                <li>Blue features push the prediction toward "Bad"</li>
+                <li>Longer arrows = stronger influence</li>
+                <li>Base value = average prediction</li>
+            </ul>
+        </body>
+        </html>
+        

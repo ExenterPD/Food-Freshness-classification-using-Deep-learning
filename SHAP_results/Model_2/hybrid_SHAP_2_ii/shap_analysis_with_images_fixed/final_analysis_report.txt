@@ -1,0 +1,47 @@
+
+FINAL SHAP + GRAD-CAM ANALYSIS REPORT
+======================================================================
+
+EXECUTION SUMMARY:
+- Device: mps
+- Samples Processed: 6
+- Good Samples: 3
+- Bad Samples: 3
+
+MODEL PERFORMANCE OBSERVATIONS:
+- All samples were correctly classified (based on folder names)
+- Confidence scores range: 0.945 to 0.965
+- Model shows high confidence in predictions (>0.93)
+
+GRAD-CAM INSIGHTS:
+1. Model focuses on specific regions in food images
+2. Attention patterns vary between food types
+3. Both texture and color features appear important
+4. Model looks at multiple regions, not just one spot
+
+SHAP ANALYSIS (IF AVAILABLE):
+- Top features identified from feature importance analysis
+- Feature importance shows which extracted features matter most
+
+KEY FINDINGS:
+1. The hybrid model effectively combines DeiT and MobileViT features
+2. Grad-CAM shows the model attends to relevant image regions
+3. High confidence suggests good discrimination ability
+4. Model appears to learn meaningful representations
+
+RECOMMENDATIONS FOR FURTHER ANALYSIS:
+1. Test on more challenging/ambiguous samples
+2. Analyze misclassifications to understand failure modes
+3. Compare attention patterns across different food categories
+4. Consider using SHAP for feature ablation studies
+
+GENERATED OUTPUTS:
+1. Individual Grad-CAM visualizations for each sample
+2. Comprehensive Grad-CAM grid visualization
+3. Integrated analysis combining multiple metrics
+4. Feature importance visualization (if SHAP data available)
+
+======================================================================
+Analysis completed successfully!
+All outputs saved in: /Users/tanaypatel/Documents/projects/Machine_Learning/KFU/food_classification_project/results/hybrid_SHAP_2_run_20251227_101055/shap_analysis_with_images_fixed
+======================================================================

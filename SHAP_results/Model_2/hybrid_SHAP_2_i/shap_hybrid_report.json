@@ -1,0 +1,200 @@
+{
+  "analysis_info": {
+    "model": "DeiT_MobileViT_Hybrid",
+    "xgboost_model": "XGBoost_Hybrid_Optimized",
+    "timestamp": "2025-12-26T15:09:00.600554",
+    "device": "mps",
+    "architecture": "DeiT + MobileViT Hybrid"
+  },
+  "summary": {
+    "total_features": 1024,
+    "top_features": [
+      {
+        "feature": "Feature_35",
+        "shap_importance": 2.503610610961914,
+        "abs_importance": 2.503610610961914,
+        "source": "DeiT"
+      },
+      {
+        "feature": "Feature_157",
+        "shap_importance": 1.3592311143875122,
+        "abs_importance": 1.3592311143875122,
+        "source": "DeiT"
+      },
+      {
+        "feature": "Feature_96",
+        "shap_importance": 0.9019919633865356,
+        "abs_importance": 0.9019919633865356,
+        "source": "DeiT"
+      },
+      {
+        "feature": "Feature_331",
+        "shap_importance": 0.7753297090530396,
+        "abs_importance": 0.7753297090530396,
+        "source": "DeiT"
+      },
+      {
+        "feature": "Feature_196",
+        "shap_importance": 0.7601711750030518,
+        "abs_importance": 0.7601711750030518,
+        "source": "DeiT"
+      },
+      {
+        "feature": "Feature_109",
+        "shap_importance": 0.7076706886291504,
+        "abs_importance": 0.7076706886291504,
+        "source": "DeiT"
+      },
+      {
+        "feature": "Feature_371",
+        "shap_importance": 0.6023224592208862,
+        "abs_importance": 0.6023224592208862,
+        "source": "DeiT"
+      },
+      {
+        "feature": "Feature_146",
+        "shap_importance": 0.4009617865085602,
+        "abs_importance": 0.4009617865085602,
+        "source": "DeiT"
+      },
+      {
+        "feature": "Feature_116",
+        "shap_importance": 0.3711163401603699,
+        "abs_importance": 0.3711163401603699,
+        "source": "DeiT"
+      },
+      {
+        "feature": "Feature_239",
+        "shap_importance": 0.33606353402137756,
+        "abs_importance": 0.33606353402137756,
+        "source": "DeiT"
+      }
+    ]
+  },
+  "hybrid_analysis": {
+    "deit_vs_mobilevit": {
+      "deit_top_features": [
+        {
+          "feature": "Feature_35",
+          "shap_importance": 2.503610610961914,
+          "abs_importance": 2.503610610961914,
+          "source": "DeiT"
+        },
+        {
+          "feature": "Feature_157",
+          "shap_importance": 1.3592311143875122,
+          "abs_importance": 1.3592311143875122,
+          "source": "DeiT"
+        },
+        {
+          "feature": "Feature_96",
+          "shap_importance": 0.9019919633865356,
+          "abs_importance": 0.9019919633865356,
+          "source": "DeiT"
+        },
+        {
+          "feature": "Feature_331",
+          "shap_importance": 0.7753297090530396,
+          "abs_importance": 0.7753297090530396,
+          "source": "DeiT"
+        },
+        {
+          "feature": "Feature_196",
+          "shap_importance": 0.7601711750030518,
+          "abs_importance": 0.7601711750030518,
+          "source": "DeiT"
+        },
+        {
+          "feature": "Feature_109",
+          "shap_importance": 0.7076706886291504,
+          "abs_importance": 0.7076706886291504,
+          "source": "DeiT"
+        },
+        {
+          "feature": "Feature_371",
+          "shap_importance": 0.6023224592208862,
+          "abs_importance": 0.6023224592208862,
+          "source": "DeiT"
+        },
+        {
+          "feature": "Feature_146",
+          "shap_importance": 0.4009617865085602,
+          "abs_importance": 0.4009617865085602,
+          "source": "DeiT"
+        },
+        {
+          "feature": "Feature_116",
+          "shap_importance": 0.3711163401603699,
+          "abs_importance": 0.3711163401603699,
+          "source": "DeiT"
+        },
+        {
+          "feature": "Feature_239",
+          "shap_importance": 0.33606353402137756,
+          "abs_importance": 0.33606353402137756,
+          "source": "DeiT"
+        }
+      ],
+      "mobilevit_top_features": [
+        {
+          "feature": "Feature_970",
+          "shap_importance": 0.001257675583474338,
+          "abs_importance": 0.001257675583474338,
+          "source": "MobileViT"
+        },
+        {
+          "feature": "Feature_435",
+          "shap_importance": 0.0010212775086984038,
+          "abs_importance": 0.0010212775086984038,
+          "source": "MobileViT"
+        },
+        {
+          "feature": "Feature_452",
+          "shap_importance": 0.00020469457376748323,
+          "abs_importance": 0.00020469457376748323,
+          "source": "MobileViT"
+        },
+        {
+          "feature": "Feature_842",
+          "shap_importance": 8.087819151114672e-05,
+          "abs_importance": 8.087819151114672e-05,
+          "source": "MobileViT"
+        },
+        {
+          "feature": "Feature_713",
+          "shap_importance": 0.0,
+          "abs_importance": 0.0,
+          "source": "MobileViT"
+        },
+        {
+          "feature": "Feature_712",
+          "shap_importance": 0.0,
+          "abs_importance": 0.0,
+          "source": "MobileViT"
+        },
+        {
+          "feature": "Feature_711",
+          "shap_importance": 0.0,
+          "abs_importance": 0.0,
+          "source": "MobileViT"
+        },
+        {
+          "feature": "Feature_710",
+          "shap_importance": 0.0,
+          "abs_importance": 0.0,
+          "source": "MobileViT"
+        },
+        {
+          "feature": "Feature_709",
+          "shap_importance": 0.0,
+          "abs_importance": 0.0,
+          "source": "MobileViT"
+        },
+        {
+          "feature": "Feature_721",
+          "shap_importance": 0.0,
+          "abs_importance": 0.0,
+          "source": "MobileViT"
+        }
+      ],
+      "deit_total_importance": 

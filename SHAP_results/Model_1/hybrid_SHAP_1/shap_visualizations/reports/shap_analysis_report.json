@@ -1,0 +1,101 @@
+{
+  "model_info": {
+    "model_name": "HybridModel1 (EfficientNetV2M + MobileViT)",
+    "device": "mps",
+    "classes": [
+      "Bad Quality",
+      "Good Quality"
+    ],
+    "total_samples": 14321
+  },
+  "shap_analysis": {
+    "total_features": 1920,
+    "mean_abs_shap_mean": 0.004994177725166082,
+    "mean_abs_shap_std": 0.06849264353513718,
+    "mean_abs_shap_max": 1.9654163122177124,
+    "mean_abs_shap_min": 0.0,
+    "top_10_features": [
+      {
+        "rank": 1,
+        "feature_index": 219,
+        "feature_name": "Feature_219",
+        "mean_abs_shap": 1.9654163122177124
+      },
+      {
+        "rank": 2,
+        "feature_index": 433,
+        "feature_name": "Feature_433",
+        "mean_abs_shap": 1.6288701295852661
+      },
+      {
+        "rank": 3,
+        "feature_index": 79,
+        "feature_name": "Feature_79",
+        "mean_abs_shap": 0.9036434292793274
+      },
+      {
+        "rank": 4,
+        "feature_index": 732,
+        "feature_name": "Feature_732",
+        "mean_abs_shap": 0.717930018901825
+      },
+      {
+        "rank": 5,
+        "feature_index": 110,
+        "feature_name": "Feature_110",
+        "mean_abs_shap": 0.697665274143219
+      },
+      {
+        "rank": 6,
+        "feature_index": 812,
+        "feature_name": "Feature_812",
+        "mean_abs_shap": 0.4871481657028198
+      },
+      {
+        "rank": 7,
+        "feature_index": 1152,
+        "feature_name": "Feature_1152",
+        "mean_abs_shap": 0.29892823100090027
+      },
+      {
+        "rank": 8,
+        "feature_index": 790,
+        "feature_name": "Feature_790",
+        "mean_abs_shap": 0.2891547679901123
+      },
+      {
+        "rank": 9,
+        "feature_index": 1054,
+        "feature_name": "Feature_1054",
+        "mean_abs_shap": 0.2812770903110504
+      },
+      {
+        "rank": 10,
+        "feature_index": 857,
+        "feature_name": "Feature_857",
+        "mean_abs_shap": 0.2236432433128357
+      }
+    ]
+  },
+  "visualizations": {
+    "summary_plot": "shap_summary.png",
+    "mean_abs_shap": "mean_absolute_shap.png",
+    "force_plots": [
+      "force_plot_sample_1_correct_confident.png",
+      "force_plot_sample_17_correct_confident.png",
+      "force_plot_sample_75_correct_confident.png",
+      "force_plot_sample_11_correct_confident.png",
+      "force_plot_sample_6_correct_confident.png"
+    ],
+    "heatmaps": [
+      "heatmap_sample_2.png",
+      "heatmap_sample_0.png",
+      "heatmap_sample_1.png"
+    ],
+    "overlays": [
+      "overlay_sample_1.png",
+      "overlay_sample_0.png",
+      "overlay_sample_2.png"
+    ]
+  }
+}
