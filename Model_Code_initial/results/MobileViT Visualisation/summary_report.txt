@@ -1,0 +1,21 @@
+KFU Food Freshness Classification - Training Results Summary
+============================================================
+
+Generated on: 2025-08-19 20:01:19
+
+SUMMARY STATISTICS:
+--------------------
+Total runs analyzed: 14
+MobileViT runs: 3
+Classifier runs: 10
+Comparison runs: 1
+
+BEST PERFORMING MODELS:
+-------------------------
+Best MobileViT: mobilevit_20250818_170503 (F1: 0.944)
+Best Classifier: xgb_20250818_173432 (F1: 0.898)
+
+Latest Comparison Results (comparison_20250818_173740):
+1. LGBM: F1=0.901, Acc=0.894
+2. XGB: F1=0.900, Acc=0.893
+3. CAT: F1=0.886, Acc=0.878
