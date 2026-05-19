@@ -239,15 +239,5 @@ SHAP is used to:
 
 ---
 
-## License
-MIT License
-
----
-
-## Citation
-If you use this work in academic research, please cite appropriately.
-
----
-
 **Author**: Tanay Dilip Patel, Sushant Sopan Chavan
 
