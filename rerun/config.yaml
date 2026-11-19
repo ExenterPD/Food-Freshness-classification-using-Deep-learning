@@ -1,0 +1,79 @@
+# Configuration for the revised pipeline.
+# Paths are relative to this file. Values marked CONFIRM are choices the authors
+# must confirm before the final runs; the manuscript shows them as placeholders.
+
+data_root: ../../data/Master Dataset   # unzipped UC-FCD archive
+work_dir: ../../runs                    # all outputs (kept outside the git repo)
+
+seeds: [0, 1, 2, 3, 4]
+image_size: 224
+
+split:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+  split_seed: 42          # used once, to build split.csv
+
+audit:
+  phash_threshold: null   # CONFIRM after inspecting runs/audit/closest_pairs.html
+  cosine_threshold: null  # CONFIRM after inspecting the same page (embedding cosine)
+  mixed_label_policy: keep   # keep | drop  (clusters containing both Good and Bad)
+
+backbone:                 # stage 1, values from the original scripts
+  epochs: 10              # CONFIRM
+  long_epochs: 20         # CONFIRM (one extended run per backbone, seed 0)
+  batch_size: 16
+  lr: 1.0e-4
+  weight_decay: 1.0e-5
+  label_smoothing: 0.1
+  early_stop_patience: 5
+  num_workers: 0          # raise on Windows/Linux if loading is slow
+
+fusion:                   # stage 3, CONFIRM all after the seed-0 sweep (04_train_fusion.py --sweep)
+  d: 256
+  heads: 8
+  mlp_hidden: 256
+  dropout: 0.2
+  epochs: 30
+  lr: 1.0e-3
+  weight_decay: 1.0e-4
+  batch_size: 64
+  label_smoothing: 0.1
+  early_stop_patience: 8
+  sweep_d: [128, 256, 512]
+  sweep_heads: [4, 8]
+
+xgb:                      # stage 4
+  b_min: 50               # CONFIRM  (BOHB minimum budget = n_estimators)
+  b_max: 500              # CONFIRM  (BOHB maximum budget)
+  eta: 3
+  total_rounds: 20000     # CONFIRM  matched budget B, summed over all evaluated configs
+  hpo_opt_seeds: [0, 1, 2, 3, 4]   # optimiser seeds for the TPE-vs-BOHB study (seed-0 embeddings)
+  final_method: tpe       # CONFIRM  which tuned XGBoost is the "final" model: tpe | bohb | default
+  refit_on_train_val: true
+  space:
+    max_depth: [3, 12]
+    learning_rate: [0.01, 0.3]   # log scale
+    subsample: [0.5, 1.0]
+    colsample_bytree: [0.5, 1.0]
+    reg_alpha: [0.0, 1.0]
+    reg_lambda: [0.0, 1.0]
+
+metrics:
+  bootstrap: 2000         # CONFIRM  resamples for single-run CIs
+
+robustness:
+  mask_method: rembg      # rembg | grabcut
+  fill: mean              # mean (ImageNet mean colour) | blur
+  brightness: [0.6, 1.4]  # CONFIRM  multiplicative factors
+  contrast: [0.6, 1.4]    # CONFIRM
+  blur_sigma: [1.0, 2.0]  # CONFIRM
+
+xai:
+  n_per_stratum: 20       # CONFIRM  test images per food group x label for quantitative XAI
+  deletion_steps: 20
+  colormap: jet
+
+complexity:
+  warmup: 10              # CONFIRM
+  timed_runs: 50

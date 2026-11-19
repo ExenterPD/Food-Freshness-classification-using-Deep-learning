@@ -1,3 +1,17 @@
+## Revised pipeline (2026 revision) — start here
+
+The experiments in the revised manuscript are produced by the scripts in [`rerun/`](rerun/README.md).
+That folder fixes several problems in the original scripts (single-token attention, XGBoost on
+pre-attention features, disabled training augmentation, non-stratified split, a BOHB call that could
+not run, inconsistent metrics, a surrogate model in the SHAP analysis) and adds the duplicate audit,
+five-seed runs, ablations, robustness tests, statistics and quantitative explanation checks
+requested by the reviewers. See `rerun/README.md` for setup and run order.
+
+The folders below (`Model_Code_*`, `SHAP_Code`, `Model_Results`, `SHAP_results`) are the original
+code and outputs, kept for reference. Their results are superseded by the rerun.
+
+---
+
 ## Research Paper – Detailed Project Summary
 
 ### 1. Problem Statement
