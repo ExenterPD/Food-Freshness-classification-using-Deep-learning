@@ -35,6 +35,13 @@ def scan(root):
     return rows
 
 
+def clean(v):
+    """EXIF strings can carry NUL bytes and other control characters that CSV cannot store."""
+    if isinstance(v, bytes):
+        v = v.decode('utf-8', 'ignore')
+    return ''.join(ch for ch in str(v) if ch.isprintable()).strip()
+
+
 def hash_one(args):
     root, rel = args
     import imagehash
@@ -49,8 +56,8 @@ def hash_one(args):
             from PIL import Image
             with Image.open(Path(root) / rel) as im:
                 ex = im.getexif()
-                exif_time = str(ex.get(36867) or ex.get(306) or '')
-                exif_model = str(ex.get(272) or '')
+                exif_time = clean(ex.get(36867) or ex.get(306) or '')
+                exif_model = clean(ex.get(272) or '')
         except Exception:
             pass
         return dict(path=rel, width=w, height=h, sha256=sha, phash=ph, exif_time=exif_time,
@@ -78,6 +85,9 @@ def main():
         print(f'WARNING: {len(bad)} unreadable files, excluded (listed in unreadable.csv)')
         bad.to_csv(wd(cfg, 'split') / 'unreadable.csv', index=False)
     df = df[df.error == ''].drop(columns='error')
+    for c in df.columns:  # belt and braces: no control characters anywhere in the CSV
+        if df[c].dtype == object:
+            df[c] = df[c].map(lambda v: clean(v) if isinstance(v, str) else v)
     out = wd(cfg, 'split') / 'manifest.csv'
     df.to_csv(out, index=False)
 
