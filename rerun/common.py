@@ -34,6 +34,15 @@ def load_config(path=None):
     path = Path(path) if path else HERE / 'config.yaml'
     with open(path) as f:
         cfg = yaml.safe_load(f)
+    local = path.resolve().parent / 'config.local.yaml'   # per-machine overrides (not in git)
+    if local.exists():
+        with open(local) as f:
+            over = yaml.safe_load(f) or {}
+        for k, v in over.items():
+            if isinstance(v, dict) and isinstance(cfg.get(k), dict):
+                cfg[k].update(v)
+            else:
+                cfg[k] = v
     base = path.resolve().parent
     cfg['data_root'] = (base / cfg['data_root']).resolve()
     cfg['work_dir'] = (base / cfg['work_dir']).resolve()

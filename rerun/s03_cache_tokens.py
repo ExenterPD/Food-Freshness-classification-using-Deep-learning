@@ -6,6 +6,7 @@
 Evaluation transform only (no augmentation). Tokens are stored as float16 .npy:
   runs/cache/<backbone>/seed<s>/<split>_tokens.npy  (N, T, C)   and <split>_index.csv
 """
+import os; os.environ.setdefault('PYTORCH_ENABLE_MPS_FALLBACK', '1')  # torch 2.0 on Apple GPUs: run missing ops on CPU (must precede `import torch`)
 import argparse
 
 import numpy as np

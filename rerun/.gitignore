@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
+.venv/
 env_*.txt
+config.local.yaml

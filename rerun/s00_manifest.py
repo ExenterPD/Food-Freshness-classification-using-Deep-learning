@@ -5,6 +5,7 @@ named Good or Bad (any case); the group is the first folder; anything between is
 
     python s00_manifest.py [--config config.yaml] [--workers 4]
 """
+import os; os.environ.setdefault('PYTORCH_ENABLE_MPS_FALLBACK', '1')  # torch 2.0 on Apple GPUs: run missing ops on CPU (must precede `import torch`)
 import argparse
 import hashlib
 from concurrent.futures import ProcessPoolExecutor

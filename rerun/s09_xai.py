@@ -13,6 +13,7 @@ pixels. Spatial maps:
 Faithfulness (deletion/insertion) is scored on the deployed XGBoost pipeline.
 Needs masks from s08_robustness.py --make-masks for the energy-in-mask score.
 """
+import os; os.environ.setdefault('PYTORCH_ENABLE_MPS_FALLBACK', '1')  # torch 2.0 on Apple GPUs: run missing ops on CPU (must precede `import torch`)
 import argparse
 from pathlib import Path
 

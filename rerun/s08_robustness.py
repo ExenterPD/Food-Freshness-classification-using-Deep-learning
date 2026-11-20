@@ -10,6 +10,7 @@ and record it in runs/masks/review.csv (columns checked, corrected).
 Food-only = background replaced; background-only = food replaced; fill = ImageNet mean colour or blur.
 Writes runs/results/table_robustness.csv and robustness_runs.csv.
 """
+import os; os.environ.setdefault('PYTORCH_ENABLE_MPS_FALLBACK', '1')  # torch 2.0 on Apple GPUs: run missing ops on CPU (must precede `import torch`)
 import argparse
 from pathlib import Path
 

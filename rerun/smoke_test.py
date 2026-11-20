@@ -6,6 +6,7 @@ Builds Foods/runs_smoke/ (outside the repo), generates fake Good/Bad images in t
 (including near-duplicates), and runs every stage with tiny settings. Use it to check an environment
 before the real runs. It does not download pretrained weights and its numbers mean nothing.
 """
+import os; os.environ.setdefault('PYTORCH_ENABLE_MPS_FALLBACK', '1')  # torch 2.0 on Apple GPUs: run missing ops on CPU (must precede `import torch`)
 import shutil
 import subprocess
 import sys
@@ -34,6 +35,7 @@ def make_data(root, n_per=12):
                     if i == 0:  # a near duplicate and an exact duplicate
                         im.filter(ImageFilter.GaussianBlur(0.5)).save(d / 'img0_near.jpg')
                         im.save(d / 'img0_copy.png')
+                        shutil.copy(d / 'img0.jpg', d / 'img0 - Copy.jpg')   # exact byte copy
 
 
 def run(*args):

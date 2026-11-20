@@ -10,6 +10,7 @@ Pass 2 (split):     python s01_audit_split.py --phash-threshold T --cosine-thres
 Writes runs/split/split.csv, clusters.csv, audit_report.csv. Never regenerate split.csv after
 training has started.
 """
+import os; os.environ.setdefault('PYTORCH_ENABLE_MPS_FALLBACK', '1')  # torch 2.0 on Apple GPUs: run missing ops on CPU (must precede `import torch`)
 import argparse
 import html
 from pathlib import Path
@@ -113,6 +114,17 @@ class UF:
 
 
 def split(cfg, df, emb, t, s, policy, out_dir):
+    n_before = len(df); n_dropped_exact = 0
+    if cfg['audit'].get('drop_exact_duplicates', True):
+        df = df.sort_values('path').reset_index(drop=False).rename(columns={'index': 'orig_idx'})
+        dup = df.duplicated('sha256', keep='first')
+        n_dropped_exact = int(dup.sum())
+        df[dup].to_csv(out_dir / 'exact_duplicates_dropped.csv', index=False)
+        df = df[~dup].reset_index(drop=True)
+        if emb is not None:
+            emb = emb[df.orig_idx.values]
+        df = df.drop(columns='orig_idx')
+        print(f'Dropped {n_dropped_exact} exact duplicates (kept one per group); {len(df)} images remain.')
     n = len(df); uf = UF(n)
     # exact duplicates
     n_exact = 0
@@ -178,6 +190,7 @@ def split(cfg, df, emb, t, s, policy, out_dir):
     rep = pd.concat([rep, tot.to_frame().T], ignore_index=True)
     rep.to_csv(out_dir / 'audit_report.csv', index=False)
     summary = dict(phash_threshold=t, cosine_threshold=s, mixed_label_policy=policy,
+                   images_before_screening=n_before, exact_duplicates_dropped=n_dropped_exact,
                    exact_duplicate_links=n_exact, near_pairs_hamming=int(len(pairs)),
                    near_pairs_confirmed=int(len(near)), clusters_ge2=int(clusters.cluster_id.nunique()),
                    largest_cluster=int(df.cluster_size.max()), mixed_label_clusters=len(mixed_ids),

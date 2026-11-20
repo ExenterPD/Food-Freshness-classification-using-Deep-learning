@@ -9,6 +9,7 @@ runs/results/:
   category_metrics.csv      per food group, per run; category_summary.csv: mean and SD
   table_backbones.csv, table_ablation.csv, table_final.csv, table_category.csv   (paper-ready text)
 """
+import os; os.environ.setdefault('PYTORCH_ENABLE_MPS_FALLBACK', '1')  # torch 2.0 on Apple GPUs: run missing ops on CPU (must precede `import torch`)
 import argparse
 from pathlib import Path
 

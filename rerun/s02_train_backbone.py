@@ -10,6 +10,7 @@ validation and test images are not (separate dataset objects).
 Outputs in runs/backbones/<backbone>/seed<s><tag>/:
   best.pt, training_log.csv, curves.png, val_preds.csv, test_preds.csv, meta.json
 """
+import os; os.environ.setdefault('PYTORCH_ENABLE_MPS_FALLBACK', '1')  # torch 2.0 on Apple GPUs: run missing ops on CPU (must precede `import torch`)
 import argparse
 import time
 

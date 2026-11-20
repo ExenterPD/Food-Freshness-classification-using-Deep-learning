@@ -9,6 +9,7 @@ fusion: concat | gated | attention.  All three share the projections and are tra
 Outputs in runs/fusion/<pair>/<fusion>/seed<s>/: best.pt, training_log.csv, meta.json,
   val_preds.csv / test_preds.csv (MLP head), z_train.npy / z_val.npy / z_test.npy (pooled embeddings).
 """
+import os; os.environ.setdefault('PYTORCH_ENABLE_MPS_FALLBACK', '1')  # torch 2.0 on Apple GPUs: run missing ops on CPU (must precede `import torch`)
 import argparse
 import time
 

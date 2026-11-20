@@ -8,6 +8,7 @@ and McNemar's test on the paired test predictions of every seed (exact when disc
 with Holm correction across comparisons within a seed.
 Writes runs/results/stats.csv and table_stats.csv.
 """
+import os; os.environ.setdefault('PYTORCH_ENABLE_MPS_FALLBACK', '1')  # torch 2.0 on Apple GPUs: run missing ops on CPU (must precede `import torch`)
 import argparse
 from pathlib import Path
 

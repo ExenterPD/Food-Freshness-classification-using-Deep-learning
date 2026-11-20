@@ -7,6 +7,7 @@ runs/results/complexity.csv with the device name. GMACs are counted by fvcore
 (one multiply-accumulate = 1). Latency = whole pipeline at batch 1 after warm-up passes;
 throughput at batch 16. Hybrid latency includes both backbones, the fusion module and XGBoost.
 """
+import os; os.environ.setdefault('PYTORCH_ENABLE_MPS_FALLBACK', '1')  # torch 2.0 on Apple GPUs: run missing ops on CPU (must precede `import torch`)
 import argparse
 import os
 import platform

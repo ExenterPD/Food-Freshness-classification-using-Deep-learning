@@ -13,6 +13,7 @@ For the final models the optimiser seed equals the data seed (default when --opt
 Outputs in runs/xgb/<pair>/<fusion>/seed<s>/<method>[_opt<k>]/:
   model.json, trials.csv, best_config.json, val_preds.csv, test_preds.csv, meta.json
 """
+import os; os.environ.setdefault('PYTORCH_ENABLE_MPS_FALLBACK', '1')  # torch 2.0 on Apple GPUs: run missing ops on CPU (must precede `import torch`)
 import argparse
 import logging
 import time
