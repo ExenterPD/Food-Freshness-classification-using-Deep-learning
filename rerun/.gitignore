@@ -3,3 +3,4 @@ __pycache__/
 .venv/
 env_*.txt
 config.local.yaml
+overnight_*.log

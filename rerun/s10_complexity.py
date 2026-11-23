@@ -46,8 +46,9 @@ def peak_reset(dev):
 def peak_mb(dev):
     if dev.type == 'cuda':
         return torch.cuda.max_memory_allocated() / 2 ** 20
-    if dev.type == 'mps' and hasattr(torch.mps, 'driver_allocated_memory'):
-        return torch.mps.driver_allocated_memory() / 2 ** 20
+    mps = getattr(torch, 'mps', None)  # not loaded on torch 2.0.x
+    if dev.type == 'mps' and mps is not None and hasattr(mps, 'driver_allocated_memory'):
+        return mps.driver_allocated_memory() / 2 ** 20
     # torch 2.0 on Apple GPUs has no allocator query: fall back to the process peak RSS (unified memory)
     try:
         import resource

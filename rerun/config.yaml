@@ -16,8 +16,10 @@ split:
   split_seed: 42          # used once, to build split.csv
 
 audit:
-  phash_threshold: null   # CONFIRM after inspecting runs/audit/closest_pairs.html
-  cosine_threshold: null  # CONFIRM after inspecting the same page (embedding cosine)
+  phash_threshold: 6      # confirmed by the authors after inspecting sample pairs
+  cosine_threshold: 0.95  # confirmed (ImageNet EfficientNetV2-M embedding cosine)
+  group_overrides:        # Egg is burst photos of few eggs; a looser link keeps Egg in the test set (authors' choice)
+    Egg: {phash_threshold: 0, cosine_threshold: 0.95}
   mixed_label_policy: keep   # keep | drop  (clusters containing both Good and Bad)
   drop_exact_duplicates: true   # keep one image per pixel-identical group (UC-FCD has ~3,000 '- Copy' files)
 
@@ -67,15 +69,15 @@ metrics:
 robustness:
   mask_method: rembg      # rembg | grabcut
   fill: mean              # mean (ImageNet mean colour) | blur
-  brightness: [0.6, 1.4]  # CONFIRM  multiplicative factors
-  contrast: [0.6, 1.4]    # CONFIRM
-  blur_sigma: [1.0, 2.0]  # CONFIRM
+  brightness: [0.6, 1.4]  # confirmed by the authors (multiplicative factors)
+  contrast: [0.6, 1.4]    # confirmed
+  blur_sigma: [1.0, 2.0]  # confirmed
 
 xai:
-  n_per_stratum: 20       # CONFIRM  test images per food group x label for quantitative XAI
+  n_per_stratum: 20       # confirmed; test images per food group x label for quantitative XAI
   deletion_steps: 20
   colormap: jet
 
 complexity:
-  warmup: 10              # CONFIRM
+  warmup: 10              # confirmed
   timed_runs: 50

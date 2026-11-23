@@ -65,6 +65,8 @@ def make_masks(cfg, method, limit=None):
         sample[['path', 'group', 'label']].assign(checked=0, corrected=0).to_csv(rv, index=False)
     parts = ['<html><body style="font:12px sans-serif"><h2>Mask review: tick checked/corrected in review.csv</h2>']
     for rel in pd.read_csv(rv).path:
+        if not mask_path(cfg, rel).exists():  # e.g. a --limit test run
+            continue
         img = load_rgb(Path(cfg['data_root']) / rel).resize((224, 224))
         m = Image.open(mask_path(cfg, rel)).convert('L').resize((224, 224))
         ov = Image.composite(img, Image.new('RGB', img.size, (255, 0, 255)), m)
@@ -124,7 +126,12 @@ def evaluate(cfg, dev, seeds):
                 m = binary_metrics(te.label.values, prob)
                 rows.append(dict(model=p, seed=s, condition=name, accuracy=m['accuracy'], macro_f1=m['macro_f1'], auroc=m['auroc']))
                 print(rows[-1], flush=True)
-    df = pd.DataFrame(rows); out = wd(cfg, 'results'); df.to_csv(out / 'robustness_runs.csv', index=False)
+    df = pd.DataFrame(rows); out = wd(cfg, 'results'); f = out / 'robustness_runs.csv'
+    if f.exists() and len(df):  # keep earlier rows for seeds not run this time, so seeds can be added later
+        old = pd.read_csv(f)
+        old = old[~old.set_index(['model', 'seed']).index.isin(df.set_index(['model', 'seed']).index)]
+        df = pd.concat([old, df], ignore_index=True).sort_values(['model', 'seed'], kind='stable')
+    df.to_csv(f, index=False)
     return df
 
 
